@@ -1,11 +1,15 @@
 
-let click = new Audio('https://2gd4.me/salty/audio/sfx/question_show.wav');
-let carta = new Audio('https://assets.codepen.io/4530986/337049__shinephoenixstormcrow__320655-rhodesmas-level-up-01.mp3');
-let stopSound = new Audio('https://2gd4.me/salty/audio/sfx/option_highlight.wav');
-let correto = new Audio('https://assets.codepen.io/4530986/274177__littlerobotsoundfactory__jingle-win-synth-03.wav');
-let errado = new Audio('https://assets.codepen.io/4530986/351563__bertrof__game-sound-incorrect-with-delay.wav');
-let intro = new Audio('https://assets.codepen.io/4530986/337049__shinephoenixstormcrow__320655-rhodesmas-level-up-01.mp3');
 
+
+//botao roll
+let click = new Audio('./assets/sounds/option_highlight.wav');
+//revela quiz ou dilema
+let quizeff = new Audio('./assets/sounds/level-up.mp3');
+let dilemaeff = new Audio('./assets/sounds/jingle-win-synth-06.wav')
+let correto = new Audio('./assets/sounds/jingle-win-synth-03.wav');
+let errado = new Audio('./assets/sounds/errado.wav');
+let intro = new Audio('./assets/sounds/jingle-win-synth-04.wav');
+let win = new Audio('./assets/sounds/jingle-win-synth-05.wav')
 
 init();
 
@@ -203,6 +207,7 @@ function sco() {
 
 document.querySelector('.btn-hold').addEventListener('click', function () {
   vencedor();
+  win.play();
 });
 
 function vencedor() {
@@ -1243,7 +1248,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     }
   });
 
-  let audio = new Audio('https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3');
+  let audio = new Audio('./assets/sounds/tick.mp3');
 
   function playSound() {
     audio.pause();
@@ -1273,7 +1278,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     if (text === "Dilema") {
       out.innerHTML = "Dilema!";
       exibeMsgAmarelo();
-      carta.play();
+      dilemaeff.play();
       setTimeout(function () {
         atualizaScore();
         if (runningDilemaQuestion <= 20) { //numero maximo de Dilema
@@ -1289,7 +1294,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     else if (text === "Quiz") {
       out.innerHTML = "Quiz!";
       exibeMsgAzul();
-      carta.play();
+      quizeff.play();
       setTimeout(function () {
         atualizaScore();
         if (runningQuizQuestion <= 47) { //numero maximo de Quiz
