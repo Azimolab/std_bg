@@ -33,6 +33,10 @@ function njogadores() {
   var player3Name = document.getElementById("player-name-3").value;
   var player4Name = document.getElementById("player-name-4").value;
 
+  out.innerHTML = (player1Name + " Gire a Roleta!");
+  exibeMsgCinza();
+
+
   if (player1Name.length > 0) {
     jogadores.push(player1Name);
   }
@@ -93,12 +97,14 @@ function nextPlayer() {
       document.querySelector('.jog1').classList.remove('active');
       document.querySelector('.jog2').classList.toggle('active');
       document.getElementById('current-0').textContent = '0';
+  
     }
     else if (activePlayer === 1) {
       activePlayer = 0;
       document.querySelector('.jog1').classList.toggle('active');
       document.querySelector('.jog2').classList.remove('active');
       document.getElementById('current-1').textContent = '0';
+   
     }
 
   } else if (jogadores.length == 3) {
@@ -108,6 +114,7 @@ function nextPlayer() {
       document.querySelector('.jog2').classList.toggle('active');
       document.querySelector('.jog3').classList.remove('active');
       document.getElementById('current-1').textContent = '0';
+   
     }
     else if (activePlayer === 1) {
       activePlayer = 2;
@@ -115,6 +122,7 @@ function nextPlayer() {
       document.querySelector('.jog2').classList.remove('active');
       document.querySelector('.jog3').classList.toggle('active');
       document.getElementById('current-2').textContent = '0';
+    
     }
     else if (activePlayer === 2) {
       activePlayer = 0;
@@ -122,6 +130,7 @@ function nextPlayer() {
       document.querySelector('.jog2').classList.remove('active');
       document.querySelector('.jog3').classList.remove('active');
       document.getElementById('current-0').textContent = '0';
+     
     }
 
 
@@ -133,6 +142,7 @@ function nextPlayer() {
       document.querySelector('.jog3').classList.remove('active');
       document.querySelector('.jog4').classList.remove('active');
       document.getElementById('current-1').textContent = '0';
+     
     }
     else if (activePlayer === 1) {
       activePlayer = 2;
@@ -141,6 +151,7 @@ function nextPlayer() {
       document.querySelector('.jog3').classList.toggle('active');
       document.querySelector('.jog4').classList.remove('active');
       document.getElementById('current-2').textContent = '0';
+      
     }
     else if (activePlayer === 2) {
       activePlayer = 3;
@@ -149,6 +160,7 @@ function nextPlayer() {
       document.querySelector('.jog3').classList.remove('active');
       document.querySelector('.jog4').classList.toggle('active');
       document.getElementById('current-3').textContent = '0';
+      
     }
     else if (activePlayer === 3) {
       activePlayer = 0;
@@ -157,13 +169,22 @@ function nextPlayer() {
       document.querySelector('.jog3').classList.remove('active');
       document.querySelector('.jog4').classList.remove('active');
       document.getElementById('current-0').textContent = '0';
+      
     }
+    msggiraroleta();
   }
-
+  
   roundScore = 0;
   btn.style.pointerEvents = "auto"; // libera o botao roleta
 
 }
+
+
+function msggiraroleta (){
+  out.innerHTML = (jogadores[activePlayer]) + " Gire a Roleta!";
+  exibeMsgCinza();
+}
+
 
 
 function sco() {
@@ -217,14 +238,14 @@ function vencedor() {
   
 
 
-
-
-
 function init() {
   scores = [0, 0, 0, 0];
   roundScore = 0;
   activePlayer = 0;
   isGameActive = true;
+
+  jogador1 = document.getElementById('name-0').textContent 
+  var out = document.getElementById("out");
 
   document.getElementById('score-0').textContent = '0';
   document.getElementById('score-1').textContent = '0';
@@ -238,24 +259,27 @@ function init() {
   document.getElementById('name-1').textContent = 'Player 2';
   document.getElementById('name-2').textContent = 'Player 3';
   document.getElementById('name-3').textContent = 'Player 4';
-  document.querySelector('.jog1').classList.remove('winner');
-  document.querySelector('.jog2').classList.remove('winner');
-  document.querySelector('.jog3').classList.remove('winner');
-  document.querySelector('.jog4').classList.remove('winner');
-  document.querySelector('.jog1').classList.remove('active');
-  document.querySelector('.jog2').classList.remove('active');
-  document.querySelector('.jog3').classList.remove('active');
-  document.querySelector('.jog4').classList.remove('active');
   document.querySelector('.jog1').classList.add('active');
+
 
   tempo();
 
 }
 
+
+
+
+
+
+
+
 function tempo() {
   startTime = new Date();
   setTimeout(display, 1000);
 }
+
+
+
 
 
 
@@ -847,6 +871,8 @@ function startQuiz() {
   choiceC.style.backgroundColor = "";
   btn.style.pointerEvents = "none";
   renderQuizQuestion();
+  msgrespondaoquiz();
+  quiz.style.animation = "out 2s ease-out forwards";
   quiz.style.opacity = "1";
   quiz.style.zIndex = "2";
 }
@@ -858,9 +884,32 @@ function startDilema() {
   choiceX.style.backgroundColor = "";
   btn.style.pointerEvents = "none";
   renderDilemaQuestion();
+  msgdiscutaodilema();
+  dilema.style.animation = "out 2s ease-out forwards";
   dilema.style.opacity = "1";
   dilema.style.zIndex = "2";
+ 
 }
+
+function msgrespondaoquiz(){
+  out.innerHTML = (jogadores[activePlayer] + " Responda o Quiz");
+  setTimeout(function () {
+    out.style.opacity = "1";
+    out.style.animation = "out .5s ease-out forwards";
+    out.style.color = "#4B68B1";
+  }, 10);
+}
+
+
+function msgdiscutaodilema(){
+  out.innerHTML = (jogadores[activePlayer] + " Discuta o Dilema");
+  setTimeout(function () {
+    out.style.opacity = "1";
+    out.style.animation = "out .5s ease-out forwards";
+    out.style.color = "#FCB713";
+  }, 10);
+}
+
 
 // renderiza as cartas de quiz
 function renderQuizQuestion() {
@@ -883,6 +932,7 @@ function fechaquiz() {
   quiz.style.opacity = "0";
   quiz.style.zIndex = "1";
   btn.style.pointerEvents = "auto"; // libera o botao roleta
+ 
 }
 
 //fecha o quiz e bloquei o botão da roleta
@@ -890,6 +940,7 @@ function fechaDilema() {
   dilema.style.opacity = "0";
   dilema.style.zIndex = "1";
   btn.style.pointerEvents = "auto"; // libera o botao roleta
+ 
 }
 
 // Verificar a Resposta enviada pelo botao
@@ -902,47 +953,47 @@ function checkQuizAnswer(quizanswer) {
     if (quizanswer == "A") {
       desabilitaBotoesQuiz();
       choiceA.style.backgroundColor = "#40AB57";
-      out.innerHTML = "+3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 3 Pontos!";
       exibeMsgVerde();
 
       setTimeout(function () {
         scores[activePlayer] += 3;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-        apagaMsg();
+        
         fechaquiz();
         nextPlayer();
-      }, 4000);
+      }, 5000);
 
     } else if (quizanswer == "B") {
       desabilitaBotoesQuiz();
       choiceB.style.backgroundColor = "#40AB57";
-      out.innerHTML = "+3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 3 Pontos!";
       exibeMsgVerde();
 
       setTimeout(function () {
         scores[activePlayer] += 3;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-        apagaMsg();
+        
         fechaquiz();
         nextPlayer();
-      }, 4000);
+      }, 5000);
 
     } else if (quizanswer == "C") {
       desabilitaBotoesQuiz();
       choiceC.style.backgroundColor = "#40AB57";
-      out.innerHTML = "+3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 3 Pontos!";
       exibeMsgVerde();
 
       setTimeout(function () {
         scores[activePlayer] += 3;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-        apagaMsg();
+       
         fechaquiz();
         nextPlayer();
-      }, 4000);
+      }, 5000);
     }
     correto.play();
-    apagaMsg();
+   
 
     if (runningQuizQuestion < lastQuizQuestion) {
       runningQuizQuestion++;
@@ -960,7 +1011,7 @@ function checkQuizAnswer(quizanswer) {
     if (quizanswer == "A") {
       desabilitaBotoesQuiz();
       choiceA.style.backgroundColor = "#E84855";
-      out.innerHTML = "-3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Perdeu 3 Pontos!";
       exibeMsgVermelho();
 
       if (opcaocorreta == "B") {
@@ -980,12 +1031,12 @@ function checkQuizAnswer(quizanswer) {
         apagaMsg();
         fechaquiz();
         nextPlayer();
-      }, 4000);
+      }, 6000);
 
     } else if (quizanswer == "B") {
       desabilitaBotoesQuiz();
       choiceB.style.backgroundColor = "#E84855";
-      out.innerHTML = "-3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Perdeu 3 Pontos!";
       exibeMsgVermelho();
 
       if (opcaocorreta == "A") {
@@ -1004,12 +1055,12 @@ function checkQuizAnswer(quizanswer) {
         apagaMsg();
         fechaquiz();
         nextPlayer();
-      }, 4000);
+      }, 6000);
 
     } else if (quizanswer == "C") {
       desabilitaBotoesQuiz();
       choiceC.style.backgroundColor = "#E84855";
-      out.innerHTML = "-3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Perdeu 3 Pontos!";
       exibeMsgVermelho();
 
       if (opcaocorreta == "B") {
@@ -1028,10 +1079,10 @@ function checkQuizAnswer(quizanswer) {
         apagaMsg();
         fechaquiz();
         nextPlayer();
-      }, 4000);
+      }, 6000);
     }
     errado.play();
-    apagaMsg();
+    
 
     if (runningQuizQuestion < lastQuizQuestion) {
       runningQuizQuestion++;
@@ -1056,7 +1107,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     if (Dilemaanswer == "X") {
       desabilitaBotoesDilema();
       choiceX.style.backgroundColor = "#40AB57";
-      out.innerHTML = "+5 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 5 Pontos!";
       exibeMsgVerde();
 
       setTimeout(function () {
@@ -1070,7 +1121,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     } else if (Dilemaanswer == "V") {
       desabilitaBotoesDilema();
       choiceV.style.backgroundColor = "#40AB57";
-      out.innerHTML = "+5 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 5 Pontos!";
       exibeMsgVerde();
 
       setTimeout(function () {
@@ -1083,7 +1134,7 @@ function checkDilemaAnswer(Dilemaanswer) {
 
     }
     correto.play();
-    apagaMsg();
+    
 
     if (runningDilemaQuestion < lastDilemaQuestion) {
       runningDilemaQuestion++;
@@ -1097,7 +1148,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     if (Dilemaanswer == "X") {
       desabilitaBotoesDilema();
       choiceX.style.backgroundColor = "#E84855";
-      out.innerHTML = "-5 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Perdeu 5 Pontos!";
       exibeMsgVermelho();
 
       setTimeout(function () {
@@ -1111,7 +1162,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     } else if (Dilemaanswer == "V") {
       desabilitaBotoesDilema();
       choiceV.style.backgroundColor = "#E84855";
-      out.innerHTML = "-5 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Perdeu 5 Pontos!";
       exibeMsgVermelho();
 
       setTimeout(function () {
@@ -1123,7 +1174,7 @@ function checkDilemaAnswer(Dilemaanswer) {
       }, 4000);
     }
     errado.play();
-    apagaMsg();
+    
 
     if (runningDilemaQuestion < lastDilemaQuestion) {
       runningDilemaQuestion++;
@@ -1209,7 +1260,7 @@ function checkDilemaAnswer(Dilemaanswer) {
   };
 
   window.resetWheel = function () {
-    console.log(" the wheel is " + theWheel);
+    console.log(" Reseta Roleta " + theWheel);
     theWheel.stopAnimation(false);
     theWheel.rotationAngle = 0;
     theWheel.draw();
@@ -1230,13 +1281,13 @@ function checkDilemaAnswer(Dilemaanswer) {
         } else {
           out.innerHTML = "Sem cartas de Dilema!";
           fechaDilema();
-          apagaMsg();
+          
         }
       }, 1000);
     }
 
     else if (text === "Quiz") {
-      out.innerHTML = "Responda o Quiz!";
+      out.innerHTML = "Quiz!";
       exibeMsgAzul();
       carta.play();
       setTimeout(function () {
@@ -1246,28 +1297,29 @@ function checkDilemaAnswer(Dilemaanswer) {
         } else {
           out.innerHTML = "Sem cartas de Quiz!";
           fechaquiz();
-          apagaMsg();
+          
         }
       }, 1000);
 
     }
 
     else if (text === "-3") {
-      out.innerHTML = "-3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Perdeu 3 Pontos!";
       exibeMsgVermelho();
       errado.play();
       setTimeout(function () {
         roundScore -= 3;
         scores[activePlayer] += roundScore;
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-        apagaMsg();
+    apagaMsg();
+        
         nextPlayer();
         resetWheel();
       }, 2000);
     }
 
     else if (text === "+2") {
-      out.innerHTML = "+2 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 3 Pontos!";
       exibeMsgVerde();
       correto.play();
       setTimeout(function () {
@@ -1279,7 +1331,6 @@ function checkDilemaAnswer(Dilemaanswer) {
         resetWheel();
       }, 2000);
     }
-
 
   }
 })();
@@ -1312,6 +1363,13 @@ function exibeMsgAzul() {
     out.style.color = "#4B68B1";
   }, 1);
 }
+function exibeMsgCinza() {
+  setTimeout(function () {
+    out.style.opacity = "1";
+    out.style.animation = "out .5s ease-out forwards";
+    out.style.color = "#C0C0C0";
+  }, 1);
+}
 function exibeMsgVerde() {
   setTimeout(function () {
     out.style.opacity = "1";
@@ -1323,7 +1381,7 @@ function exibeMsgVerde() {
 function apagaMsg() {
   setTimeout(function () {
     out.style.opacity = "0";
-  }, 2000);
+  }, 1);
 }
 
 function atualizaScore() {
