@@ -215,7 +215,7 @@ background-image: url(https://raw.githubusercontent.com/Azimolab/std_bg/master/a
 
 .dilema {
   opacity: 0;
-  /* display: grid;*/
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.5fr 2fr 0.5fr;
   gap: 1px 1px;
@@ -501,7 +501,7 @@ h2{
   }
 
   .dilema {
-    display: -ms-grid;
+    /*display: -ms-grid;*/
     -ms-grid-columns: 1fr 1fr 1fr;
     -ms-grid-rows: 0.7fr 1.3fr 1fr;
     -ms-grid-row: 1;
