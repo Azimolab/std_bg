@@ -1324,7 +1324,7 @@ function checkDilemaAnswer(Dilemaanswer) {
     }
 
     else if (text === "+2") {
-      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 3 Pontos!";
+      out.innerHTML = (jogadores[activePlayer]) + " Ganhou 2 Pontos!";
       exibeMsgVerde();
       correto.play();
       setTimeout(function () {
